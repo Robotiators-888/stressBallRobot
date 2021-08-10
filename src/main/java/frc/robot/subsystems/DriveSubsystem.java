@@ -4,15 +4,15 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
   //create motor controller objects
-  private WPI_VictorSPX leftPrimary = new WPI_VictorSPX(0);
-  private WPI_VictorSPX leftSecondary = new WPI_VictorSPX(0);
-  private WPI_VictorSPX rightPrimary = new WPI_VictorSPX(0);
-  private WPI_VictorSPX rightSecondary = new WPI_VictorSPX(0);
+  private WPI_VictorSPX leftPrimary = new WPI_VictorSPX(Constants.ID_LEFT_PRIMARY);
+  private WPI_VictorSPX leftSecondary = new WPI_VictorSPX(Constants.ID_LEFT_PRIMARY);
+  private WPI_VictorSPX rightPrimary = new WPI_VictorSPX(Constants.ID_RIGHT_PRIMARY);
+  private WPI_VictorSPX rightSecondary = new WPI_VictorSPX(Constants.ID_RIGHT_SECONDARY);
 
   //create a speed controller group for each side
   private SpeedControllerGroup groupLeft = new SpeedControllerGroup(leftPrimary, leftSecondary);
