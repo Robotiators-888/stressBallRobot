@@ -6,7 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants;
+import frc.robot.commands.tankDriveCMD;
 import frc.robot.subsystems.DriveSubsystem;
 
 /**
@@ -23,7 +23,7 @@ public class RobotContainer {
 
   public RobotContainer() {
     configureButtonBindings();
-    driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem,  () -> joystick.getRawAxis(Constants.LEFT_AXIS),  () -> joystick.getRawAxis(Constants.RIGHT_AXIS), Constants.speed);
+    driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem,  () -> joystick.getRawAxis(Constants.LEFT_AXIS),  () -> joystick.getRawAxis(Constants.RIGHT_AXIS), () -> Constants.speed));
   }
 
 

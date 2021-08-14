@@ -14,10 +14,10 @@ package frc.robot;
  */
 public final class Constants {
 
-        public static final int ID_LEFT_PRIMARY = 0;  
-        public static final int ID_LEFT_SECONDARY = 0;  
-        public static final int ID_RIGHT_PRIMARY = 0;  
-        public static final int ID_RIGHT_SECONDARY = 0;  
+        public static final int ID_LEFT_PRIMARY = 20;  
+        public static final int ID_LEFT_SECONDARY = 21;  
+        public static final int ID_RIGHT_PRIMARY = 22;  
+        public static final int ID_RIGHT_SECONDARY = 23;  
 
         public static final Double speed = 1.0;
     
@@ -25,8 +25,8 @@ public final class Constants {
    
         public static final int JOYSTICK_PORT = 0;  
 
-        public static final int LEFT_AXIS = 0;  
-        public static final int RIGHT_AXIS = 0;  
+        public static final int LEFT_AXIS = 1;  
+        public static final int RIGHT_AXIS = 5;  
     
     
 

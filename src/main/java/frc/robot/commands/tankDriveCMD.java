@@ -10,12 +10,14 @@ public class tankDriveCMD extends CommandBase {
 
   private final DriveSubsystem driveSubsystem;
   private Supplier<Double> speedLeft, speedRight, speed;
+  
  
-  public tankDriveCMD(DriveSubsystem driveSubsystem, Supplier<Double> speedLeft, Supplier<Double> speedRight, Supplier<Double> speed) {
+  public tankDriveCMD(DriveSubsystem driveSubsystem, Supplier<Double> speedLeft, Supplier<Double> speedRight, 
+      Supplier<Double> speed2) {
     this.driveSubsystem = driveSubsystem;
     this.speedLeft = speedLeft;
     this.speedRight = speedRight;
-    this.speed = speed;
+    this.speed = speed2;
 
     addRequirements(driveSubsystem);
   }

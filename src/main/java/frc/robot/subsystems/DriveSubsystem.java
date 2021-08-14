@@ -10,7 +10,7 @@ import frc.robot.Constants;
 public class DriveSubsystem extends SubsystemBase {
   //create motor controller objects
   private WPI_VictorSPX leftPrimary = new WPI_VictorSPX(Constants.ID_LEFT_PRIMARY);
-  private WPI_VictorSPX leftSecondary = new WPI_VictorSPX(Constants.ID_LEFT_PRIMARY);
+  private WPI_VictorSPX leftSecondary = new WPI_VictorSPX(Constants.ID_LEFT_SECONDARY);
   private WPI_VictorSPX rightPrimary = new WPI_VictorSPX(Constants.ID_RIGHT_PRIMARY);
   private WPI_VictorSPX rightSecondary = new WPI_VictorSPX(Constants.ID_RIGHT_SECONDARY);
 
