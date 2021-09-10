@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -14,15 +15,40 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static final int RIGHT_MOTOR_1_ID = 0;
-    public static final int RIGHT_MOTOR_2_ID = 1;
-    public static final int LEFT_MOTOR_2_ID = 2;
-    public static final int LEFT_MOTOR_1_ID = 3;
+        //Drive Motors
+        public static final int ID_LEFT_PRIMARY = 20;  
+        public static final int ID_LEFT_SECONDARY = 21;  
+        public static final int ID_RIGHT_PRIMARY = 22;  
+        public static final int ID_RIGHT_SECONDARY = 23;  
+
+        //Speed for the motors
+        public static final Double speed = 1.0;
     
-    public static final int DriverController = 0;
-	public static final int LEFT_STICK_Y = 1;
-	public static final int RIGHT_STICK_Y = 5;
-	
 
+        //Joystick
+        //this tells which port of the driver station the joystick is in
+        public static final int JOYSTICK_PORT = 0;  
+        
+        //This tells us which part of the joystick will be used
+        // 1 = to the left stick's y axis
+        public static final int LEFT_AXIS = 1; 
+        // 4 = to the right stick's y axis 
+        public static final int RIGHT_AXIS = 5;  
 
+        public static final int A_BUTTON = 6;
+
+        public static final int L_X_AXIS = 0;
+
+        public static final int R_X_AXIS = 4;
+    
+
+        //Shooter
+        public static final int FLYWHEEL_LEFT = 0;
+        public static final int FLYWHEEL_RIGHT = 1;
+        public static final int ELEVATION = 2;
+        
+        public static final double FLYWHEEL_SPEED = 1.0;
+        public static final double ELEVATION_SPEED = 1.0;
+    
 }
+
