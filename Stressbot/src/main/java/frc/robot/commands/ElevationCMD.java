@@ -8,11 +8,12 @@ import java.util.function.Supplier;
 
 public class ElevationCMD extends CommandBase{
     private final ShooterSubsystem shooterSubsystem;
+    private Supplier<Boolean> elevationH;
     private Supplier<Double> elevationSpeed;
 
-    public ElevationCMD(ShooterSubsystem shooterSubsystem, Supplier<Double> elevationSpeed){
+    public ElevationCMD(ShooterSubsystem shooterSubsystem, Supplier<Boolean> elevationH){
         this.shooterSubsystem = shooterSubsystem;
-        this.elevationSpeed = elevationSpeed;
+        this.elevationH = elevationH;
    
         addRequirements(shooterSubsystem);
     }

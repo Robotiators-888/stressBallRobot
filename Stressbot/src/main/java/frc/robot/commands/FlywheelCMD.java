@@ -8,10 +8,11 @@ import java.util.function.Supplier;
 public class FlywheelCMD extends CommandBase {
     
    private final ShooterSubsystem shooterSubsystem;
-   private  Supplier<Double> Flywheel;
+   private  Supplier<Boolean> Flywheel;
+   private  Supplier<Double> flywheelSpeed;
    
    
-   public FlywheelCMD(ShooterSubsystem shooterSubsystem, Supplier<Double> Flywheel){
+   public FlywheelCMD(ShooterSubsystem shooterSubsystem, Supplier<Boolean> Flywheel){
    this.shooterSubsystem = shooterSubsystem;
     this.Flywheel = Flywheel;
    
@@ -32,7 +33,7 @@ public class FlywheelCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooterSubsystem.flywheel(Flywheel.get());
+    shooterSubsystem.flywheelSpeed(flywheelSpeed.get());
   }
 
   // Called once the command ends or is interrupted.
