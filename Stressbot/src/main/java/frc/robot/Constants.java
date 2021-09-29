@@ -37,7 +37,7 @@ public final class Constants {
 
         public static final int A_BUTTON = 6;
 
-        public static final int L_X_AXIS = 0;
+        public static final int B_BUTTON = 7;
 
         public static final int R_X_AXIS = 4;
     

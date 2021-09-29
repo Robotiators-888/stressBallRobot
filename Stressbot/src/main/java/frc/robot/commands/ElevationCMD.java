@@ -26,7 +26,9 @@ public void initialize() {}
 // Called every time the scheduler runs while the command is scheduled.
 @Override
 public void execute() {
+    if(elevationH != null){
     shooterSubsystem.elevation(elevationSpeed.get());
+    }
 }
 
 // Called once the command ends or is interrupted.
