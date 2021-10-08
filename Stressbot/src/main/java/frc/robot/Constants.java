@@ -39,7 +39,9 @@ public final class Constants {
 
         public static final int B_BUTTON = 2;
 
-        public static final int R_X_AXIS = 4;
+        public static final int DAPD_UP = 0;
+        
+        public static final int DAPD_DOWN = 0;
     
 
         //Shooter

@@ -27,9 +27,13 @@ public class ShooterSubsystem extends SubsystemBase {
    }
 
    //
-   public void elevation(double elevationSpeed){
+   public void elevationUp(){
     elevationSpeed = Constants.FLYWHEEL_SPEED;
       elevation.setSpeed(elevationSpeed);
    }
+   public void elevationDown(){
+      elevationSpeed = Constants.FLYWHEEL_SPEED * -1;
+        elevation.setSpeed(elevationSpeed);
+     }
 }
  
