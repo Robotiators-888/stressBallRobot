@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.tankDriveCMD;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.ElevationUpCMD;
 import frc.robot.commands.ElevationDownCMD;
+import frc.robot.commands.ElevationUpCMD;
 import frc.robot.commands.FlywheelCMD;
 
 /**
@@ -27,10 +27,11 @@ public class RobotContainer {
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   
   private final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
-  private final JoystickButton aButton = new JoystickButton(joystick, 6);
-  private final JoystickButton upDpad = new JoystickButton(joystick, 0);
-  private final JoystickButton DownDpad = new JoystickButton(joystick, 0);
-  
+  public final  JoystickButton aButton = new JoystickButton(joystick, 1);
+  public final JoystickButton rBumper = new JoystickButton(joystick, 6);
+  public final JoystickButton lBumper = new JoystickButton(joystick, 5);
+
+ 
 
 
   public RobotContainer() {
@@ -38,14 +39,16 @@ public class RobotContainer {
     //This is creating a CMD that will be called and excuted as the robot is enabled we do this by making a defualt command
     // This gets the requirements and the cmd construtor from eariler  This gets the left stick so it controls the left motors   This gets the right stick that controls the right motors   this is the speed
     driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem,  () -> joystick.getRawAxis(Constants.LEFT_AXIS),  () -> joystick.getRawAxis(Constants.RIGHT_AXIS), () -> Constants.speed));
+    //shooterSubsystem.setDefaultCommand(new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP)));
+    //shooterSubsystem.setDefaultCommand(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
  
   }
 
 
   private void configureButtonBindings() {
-    aButton.toggleWhenPressed(new FlywheelCMD(shooterSubsystem, () ->  joystick.getRawButton(Constants.A_BUTTON)));
-    upDpad.toggleWhenPressed(new ElevationUpCMD(shooterSubsystem));
-    DownDpad.toggleWhenPressed(new ElevationDownCMD(shooterSubsystem));
+    aButton.whileHeld(new FlywheelCMD(shooterSubsystem, () ->  joystick.getRawButton(Constants.A_BUTTON)));
+    lBumper.whileHeld((new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
+    rBumper.whileHeld(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
   }
 
 

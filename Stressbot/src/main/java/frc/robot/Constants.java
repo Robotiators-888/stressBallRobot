@@ -35,13 +35,13 @@ public final class Constants {
         // 4 = to the right stick's y axis 
         public static final int RIGHT_AXIS = 5;  
 
-        public static final int A_BUTTON = 6;
+        public static final int A_BUTTON = 1;
 
         public static final int B_BUTTON = 2;
 
-        public static final int DAPD_UP = 0;
+        public static final int DAPD_UP = 5;
         
-        public static final int DAPD_DOWN = 0;
+        public static final int DAPD_DOWN = 6;
     
 
         //Shooter
@@ -49,8 +49,8 @@ public final class Constants {
         public static final int FLYWHEEL_RIGHT = 1;
         public static final int ELEVATION = 2;
         
-        public static final double FLYWHEEL_SPEED = 1.0;
-        public static final double ELEVATION_SPEED = 1.0;
+        public static final double FLYWHEEL_SPEED = 2.0;
+        public static final double ELEVATION_SPEED = 0.25;
     
 }
 

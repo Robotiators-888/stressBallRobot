@@ -22,10 +22,15 @@ public class ShooterSubsystem extends SubsystemBase {
 
    public void flywheelSpeed() {
       FlywheelRight.setSpeed(Constants.FLYWHEEL_SPEED);
-      FlywheelLeft.setSpeed(Constants.FLYWHEEL_SPEED);
+      FlywheelLeft.setSpeed(Constants.FLYWHEEL_SPEED*-1);
 
    }
 
+
+   public void flywheelEnd(){
+      FlywheelLeft.setSpeed(0.0);
+      FlywheelRight.setSpeed(0.0);
+   }
    //
    public void elevationUp(){
     elevationSpeed = Constants.FLYWHEEL_SPEED;
@@ -35,5 +40,14 @@ public class ShooterSubsystem extends SubsystemBase {
       elevationSpeed = Constants.FLYWHEEL_SPEED * -1;
         elevation.setSpeed(elevationSpeed);
      }
-}
+
+
+
+     public void elevationEnd(){
+        elevationSpeed = 0;
+        elevation.setSpeed(0.0);
+     }
+
+
+   }
  
