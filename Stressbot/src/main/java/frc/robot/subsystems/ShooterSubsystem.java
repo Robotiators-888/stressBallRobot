@@ -31,6 +31,7 @@ public class ShooterSubsystem extends SubsystemBase {
       FlywheelLeft.setSpeed(0.0);
       FlywheelRight.setSpeed(0.0);
    }
+  
    //
    public void elevationUp(){
     elevationSpeed = Constants.FLYWHEEL_SPEED;

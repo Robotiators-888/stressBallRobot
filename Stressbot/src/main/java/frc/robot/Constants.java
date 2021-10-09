@@ -49,8 +49,9 @@ public final class Constants {
         public static final int FLYWHEEL_RIGHT = 1;
         public static final int ELEVATION = 2;
         
-        public static final double FLYWHEEL_SPEED = 2.0;
-        public static final double ELEVATION_SPEED = 0.25;
+        public static final double FLYWHEEL_SPEED = 1.5;
+        public static final double ELEVATION_SPEED = 0.5;
+		public static final int RIGHT_TRIGGER = 0;
     
 }
 
