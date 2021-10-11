@@ -15,6 +15,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.ElevationDownCMD;
 import frc.robot.commands.ElevationUpCMD;
 import frc.robot.commands.FlywheelCMD;
+import frc.robot.commands.PistonCMD;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -52,6 +53,7 @@ public class RobotContainer {
     aButton.whileHeld(new FlywheelCMD(shooterSubsystem, () ->  joystick.getRawButton(Constants.A_BUTTON)));
     lBumper.whileHeld((new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
     rBumper.whileHeld(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
+    bButton.whenPressed(new PistonCMD(pneumaticsSubsystem));
   }
 
 

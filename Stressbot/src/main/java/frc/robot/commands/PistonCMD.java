@@ -16,7 +16,7 @@ public class PistonCMD extends CommandBase{
     // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pneumaticsSubsystem.pistonInt();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.

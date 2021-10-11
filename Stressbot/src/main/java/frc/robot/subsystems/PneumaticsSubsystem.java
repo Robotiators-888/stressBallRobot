@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class PneumaticsSubsystem extends SubsystemBase {
 
     //Solenoid constructor 1st num is pcm port, second is solenoid channel
-     DoubleSolenoid piston = new DoubleSolenoid(0,1);
+     DoubleSolenoid piston = new DoubleSolenoid(6,7);
 
     Compressor c = new Compressor(0);
 
@@ -20,11 +20,17 @@ public class PneumaticsSubsystem extends SubsystemBase {
     }
 
     public void pistonGo(){
-        piston.toggle();
+        
+        piston.set(Value.kReverse);
+        piston.set(Value.kForward);
+        
+        
     
     }
 
-
+    public void PistonStop(){
+        
+    }
 
 
     public void periodic() {
