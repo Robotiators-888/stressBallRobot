@@ -5,7 +5,7 @@ import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import java.util.function.Supplier;
 
-
+// Constructor of the cmd that creates the ability to spin the flywheels
 public class FlywheelCMD extends CommandBase {
     
    private final ShooterSubsystem shooterSubsystem;
@@ -21,10 +21,6 @@ public class FlywheelCMD extends CommandBase {
    }
    
   
-
-
-
-
 
 
 // Called when the command is initially scheduled.

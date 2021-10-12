@@ -29,6 +29,7 @@ public class RobotContainer {
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
   
+  // Creates joystick and joystick objects
   public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
   public final  JoystickButton aButton = new JoystickButton(joystick, 1);
   public final JoystickButton bButton = new JoystickButton(joystick, 2);
@@ -43,17 +44,23 @@ public class RobotContainer {
     //This is creating a CMD that will be called and excuted as the robot is enabled we do this by making a defualt command
     // This gets the requirements and the cmd construtor from eariler  This gets the left stick so it controls the left motors   This gets the right stick that controls the right motors   this is the speed
     driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem,  () -> joystick.getRawAxis(Constants.LEFT_AXIS),  () -> joystick.getRawAxis(Constants.RIGHT_AXIS), () -> Constants.speed));
-    //shooterSubsystem.setDefaultCommand(new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP)));
-    //shooterSubsystem.setDefaultCommand(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
- 
+    
   }
 
 
   private void configureButtonBindings() {
+
+    // Creates the A button to spin flywheels
     aButton.whileHeld(new FlywheelCMD(shooterSubsystem, () ->  joystick.getRawButton(Constants.A_BUTTON)));
+    
+    // Creates the Left bumper to lift elevation up
     lBumper.whileHeld((new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
+    
+    //Creates the Right bumper to lower elevation down
     rBumper.whileHeld(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
-    bButton.whenPressed(new PistonCMD(pneumaticsSubsystem));
+    
+    // Creates B button to fire the piston when pressed
+    bButton.whenHeld(new PistonCMD(pneumaticsSubsystem));
   }
 
 

@@ -11,6 +11,7 @@ public class ElevationDownCMD extends CommandBase{
     private final ShooterSubsystem shooterSubsystem;
     private final Supplier<Integer> ElevationDown;
 
+    // Constructor of the cmd that creates the ability to move elevation down
     public ElevationDownCMD(ShooterSubsystem shooterSubsystem, Supplier<Integer> ElevationDown){
         this.shooterSubsystem = shooterSubsystem;
         this.ElevationDown = ElevationDown;

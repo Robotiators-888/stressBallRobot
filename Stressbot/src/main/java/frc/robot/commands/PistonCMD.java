@@ -5,6 +5,7 @@ import frc.robot.subsystems.PneumaticsSubsystem;
 
 public class PistonCMD extends CommandBase{
     
+  // Constructor of the cmd that creates the ability to fire a piston
     private final PneumaticsSubsystem pneumaticsSubsystem;
     
     public PistonCMD(PneumaticsSubsystem pneumaticsSubsystem){
@@ -23,11 +24,12 @@ public class PistonCMD extends CommandBase{
   @Override
   public void execute() {
     pneumaticsSubsystem.pistonGo();
+    pneumaticsSubsystem.PistonReverse();
   }
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
+   pneumaticsSubsystem.PistonToggle();
   }
 
   // Returns true when the command should end.
