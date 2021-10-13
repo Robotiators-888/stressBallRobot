@@ -24,8 +24,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   public DriveSubsystem() {
     //set one motor on each side inverted so we dont destroy the gearbox
-    leftSecondary.setInverted(false);
-    rightSecondary.setInverted(false);
+    groupRight.setInverted(true);
+    groupLeft.setInverted(true);
   }
 
   public void periodic() {

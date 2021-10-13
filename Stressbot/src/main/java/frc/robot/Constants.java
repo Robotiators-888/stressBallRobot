@@ -22,7 +22,7 @@ public final class Constants {
         public static final int ID_RIGHT_SECONDARY = 23;  
 
         //Speed for the motors
-        public static final Double speed = 0.5;
+        public static final Double speed = 0.7;
     
 
         //Joystick
