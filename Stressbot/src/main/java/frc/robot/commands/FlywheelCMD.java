@@ -1,7 +1,10 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import java.util.function.Supplier;
 
@@ -9,11 +12,11 @@ import java.util.function.Supplier;
 public class FlywheelCMD extends CommandBase {
     
    private final ShooterSubsystem shooterSubsystem;
-   private  Supplier<Boolean> Flywheel;
+   private  Supplier<Double> Flywheel;
    private  Supplier<Double> flywheelSpeed;
    
-   
-   public FlywheelCMD(ShooterSubsystem shooterSubsystem, Supplier<Boolean> Flywheel){
+   public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
+   public FlywheelCMD(ShooterSubsystem shooterSubsystem, Supplier<Double> Flywheel){
    this.shooterSubsystem = shooterSubsystem;
     this.Flywheel = Flywheel;
    
@@ -32,9 +35,12 @@ public class FlywheelCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    shooterSubsystem.flywheelSpeed();
-     
+    if(joystick.getRawAxis(Constants.RIGHT_TRIGGER) >= 1){
+      shooterSubsystem.flywheelSpeed();
+      if(joystick.getRawAxis(Constants.RIGHT_TRIGGER) <= 1){
+        shooterSubsystem.flywheelEnd();
+      }
+    }
   }
   // Called once the command ends or is interrupted.
   @Override
