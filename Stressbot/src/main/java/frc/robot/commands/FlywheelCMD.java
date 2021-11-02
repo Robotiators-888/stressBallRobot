@@ -35,9 +35,9 @@ public class FlywheelCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(joystick.getRawAxis(Constants.RIGHT_TRIGGER) >= 1){
+    if(joystick.getRawAxis(Constants.RIGHT_TRIGGER) >= .5){
       shooterSubsystem.flywheelSpeed();
-      if(joystick.getRawAxis(Constants.RIGHT_TRIGGER) <= 1){
+      if(joystick.getRawAxis(Constants.RIGHT_TRIGGER) <= .25){
         shooterSubsystem.flywheelEnd();
       }
     }
