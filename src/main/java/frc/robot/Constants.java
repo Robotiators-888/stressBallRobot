@@ -16,14 +16,14 @@ package frc.robot;
 public final class Constants {
 
         //Drive Motors
-        public static final int ID_LEFT_PRIMARY = 20;  
-        public static final int ID_LEFT_SECONDARY = 21;  
-        public static final int ID_RIGHT_PRIMARY = 22;  
-        public static final int ID_RIGHT_SECONDARY = 23;  
+        public static final int ID_LEFT_PRIMARY = 22;  
+        public static final int ID_LEFT_SECONDARY = 23;  
+        public static final int ID_RIGHT_PRIMARY = 20;  
+        public static final int ID_RIGHT_SECONDARY = 21;  
 
         //Speed for the motors
         public static final Double speed = 0.7;
-    
+        
 
         //Joystick
         //this tells which port of the driver station the joystick is in
