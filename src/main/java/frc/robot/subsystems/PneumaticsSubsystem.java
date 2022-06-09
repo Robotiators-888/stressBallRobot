@@ -11,8 +11,11 @@ public class PneumaticsSubsystem extends SubsystemBase {
     // Solenoid constructor is (6,7) the 6 is the solenoid input, 7 is solenoid
     // output
     DoubleSolenoid piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
-
     Compressor c = new Compressor(PneumaticsModuleType.CTREPCM);
+    
+    public PneumaticsSubsystem(){
+        piston.set(Value.kReverse);
+    }
 
     // Causes Piston to fire forward
     public void pistonGo() {

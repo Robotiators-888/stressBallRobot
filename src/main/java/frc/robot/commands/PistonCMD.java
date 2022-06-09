@@ -24,12 +24,12 @@ public class PistonCMD extends CommandBase{
   @Override
   public void execute() {
     pneumaticsSubsystem.pistonGo();
-    pneumaticsSubsystem.PistonReverse();
+    
   }
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-   pneumaticsSubsystem.PistonToggle();
+    pneumaticsSubsystem.PistonReverse();
   }
 
   // Returns true when the command should end.

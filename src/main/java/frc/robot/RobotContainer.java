@@ -70,7 +70,7 @@ public class RobotContainer {
     rBumper.whileHeld(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
 
     // Creates B button to fire the piston when pressed
-    bButton.whenHeld(new PistonCMD(pneumaticsSubsystem));
+    bButton.whileActiveOnce(new PistonCMD(pneumaticsSubsystem));
   }
 
   public Command getAutonomousCommand() {
