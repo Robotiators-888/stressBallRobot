@@ -27,7 +27,7 @@ public class FlywheelCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooterSubsystem.flywheelSpeed();
+    if (shooterSubsystem.flywheelToggle)shooterSubsystem.flywheelSpeed();
   }
 
   // Called once the command ends or is interrupted.

@@ -13,6 +13,8 @@ public class PneumaticsSubsystem extends SubsystemBase {
     DoubleSolenoid piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
     Compressor c = new Compressor(PneumaticsModuleType.CTREPCM);
     
+    
+
     public PneumaticsSubsystem(){
         piston.set(Value.kReverse);
     }
