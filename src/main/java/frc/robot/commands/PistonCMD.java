@@ -28,14 +28,16 @@ public class PistonCMD extends CommandBase{
   @Override
   public void execute() {
     if (shooterSubsystem.getFlyWheelIsOn()){
-      pneumaticsSubsystem.pistonGo();
+      //pneumaticsSubsystem.pistonGo();
+      pneumaticsSubsystem.PistonReverse();
     }
     SmartDashboard.putBoolean("flywheel running?: ",shooterSubsystem.getFlyWheelIsOn());
   }
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    pneumaticsSubsystem.PistonReverse();
+    //pneumaticsSubsystem.PistonReverse();
+    pneumaticsSubsystem.pistonGo();
   }
 
   // Returns true when the command should end.
