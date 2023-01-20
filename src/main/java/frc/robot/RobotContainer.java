@@ -61,16 +61,17 @@ public class RobotContainer {
     // aButton.whileHeld(new FlywheelCMD(shooterSubsystem, () ->
     // joystick.getRawButton(Constants.A_BUTTON)));
 
-    rightTrigger.whileActiveContinuous(new FlywheelCMD(shooterSubsystem));
+    rightTrigger.whileTrue(new FlywheelCMD(shooterSubsystem));
 
     // Creates the Left bumper to lift elevation up
-    lBumper.whileHeld((new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
+    lBumper.whileTrue((new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
 
     // Creates the Right bumper to lower elevation down
-    rBumper.whileHeld(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
+    rBumper.whileTrue(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
 
     // Creates B button to fire the piston when pressed
-    bButton.whileActiveOnce(new PistonCMD(pneumaticsSubsystem));
+    bButton.toggleOnTrue(new PistonCMD(pneumaticsSubsystem));
+    
   }
 
   public Command getAutonomousCommand() {
