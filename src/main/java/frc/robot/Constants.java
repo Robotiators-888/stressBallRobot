@@ -33,7 +33,7 @@ public final class Constants {
         // 1 = to the left stick's y axis
         public static final int LEFT_AXIS = 1; 
         // 4 = to the right stick's y axis 
-        public static final int RIGHT_AXIS = 5;  
+        public static final int RIGHT_AXIS = 4;  
         // 1 = the a button on joystick
         public static final int A_BUTTON = 1;
         // 2 = the b button on joystick

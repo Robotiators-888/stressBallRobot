@@ -17,24 +17,25 @@ public class PistonCMD extends CommandBase{
     // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    pneumaticsSubsystem.PistonReverse();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    pneumaticsSubsystem.pistonGo();
+    pneumaticsSubsystem.PistonToggle();
+    end(isFinished());
     
   }
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    pneumaticsSubsystem.PistonReverse();
+    pneumaticsSubsystem.PistonToggle();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
