@@ -5,6 +5,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.VideoMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -44,13 +46,15 @@ public class RobotContainer {
 
   public RobotContainer() {
     configureButtonBindings();
+    CameraServer.startAutomaticCapture()
+    .setVideoMode(new VideoMode(VideoMode.PixelFormat.kMJPEG, 416, 240, 60));
     // This is creating a CMD that will be called and excuted as the robot is
     // enabled we do this by making a defualt command
     // This gets the requirements and the cmd construtor from eariler This gets the
     // left stick so it controls the left motors This gets the right stick that
     // controls the right motors this is the speed
-    driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem, () -> joystick.getRawAxis(Constants.LEFT_AXIS),
-        () -> joystick.getRawAxis(Constants.RIGHT_AXIS), () -> Constants.speed));
+    driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem, () -> joystick.getRawAxis(Constants.RIGHT_AXIS),
+        () -> joystick.getRawAxis(Constants.LEFT_AXIS), () -> Constants.speed));
     // shooterSubsystem.setDefaultCommand(new FlywheelCMD(shooterSubsystem, () ->
     // joystick.getRawAxis((Constants.RIGHT_TRIGGER))-0.5));
   }
@@ -61,16 +65,18 @@ public class RobotContainer {
     // aButton.whileHeld(new FlywheelCMD(shooterSubsystem, () ->
     // joystick.getRawButton(Constants.A_BUTTON)));
 
-    rightTrigger.whileActiveContinuous(new FlywheelCMD(shooterSubsystem));
+    rightTrigger.whileTrue(new FlywheelCMD(shooterSubsystem));
 
     // Creates the Left bumper to lift elevation up
-    lBumper.whileHeld((new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
+    lBumper.whileTrue((new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
 
     // Creates the Right bumper to lower elevation down
-    rBumper.whileHeld(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
+    rBumper.whileTrue(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
 
     // Creates B button to fire the piston when pressed
-    bButton.whileActiveOnce(new PistonCMD(pneumaticsSubsystem));
+    //bButton.toggleOnTrue();
+    bButton.onTrue(new PistonCMD(pneumaticsSubsystem));
+    
   }
 
   public Command getAutonomousCommand() {

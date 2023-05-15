@@ -32,7 +32,7 @@ public class tankDriveCMD extends CommandBase {
   //One the CMD starts this will run until the CMD is interrupted or the robot exits enabled
   public void execute() {
     //Gets speeds of the left and right sides plus the overall speed
-    driveSubsystem.setMotors(speedLeft.get(), speedRight.get() * -1, speed.get());
+    driveSubsystem.setMotors(speedLeft.get(), speedRight.get(), speed.get());
     
     //sends the data to the smart dash which can be seen on the driver station
     SmartDashboard.putNumber("Left side speed",speedLeft.get());
