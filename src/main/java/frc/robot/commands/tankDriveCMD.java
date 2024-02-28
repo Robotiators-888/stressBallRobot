@@ -4,10 +4,10 @@ package frc.robot.commands;
 import frc.robot.subsystems.DriveSubsystem;
 import java.util.function.Supplier;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 
 // class of tankDriveCMD
-public class tankDriveCMD extends CommandBase {
+public class tankDriveCMD extends Command {
 
   //creates driveSubsystem object from the DriveSubsystem class/file
   private final DriveSubsystem driveSubsystem;

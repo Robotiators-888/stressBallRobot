@@ -1,12 +1,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.ShooterSubsystem;
 
 // Constructor of the cmd that creates the ability to spin the flywheels
-public class FlywheelCMD extends CommandBase {
+public class FlywheelCMD extends Command {
 
   private final ShooterSubsystem shooterSubsystem;
 

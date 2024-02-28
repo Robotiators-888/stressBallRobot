@@ -2,12 +2,12 @@ package frc.robot.commands;
 
 import java.util.function.Supplier;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ShooterSubsystem;
 
 
 
-public class ElevationDownCMD extends CommandBase{
+public class ElevationDownCMD extends Command{
     private final ShooterSubsystem shooterSubsystem;
     private final Supplier<Integer> ElevationDown;
 

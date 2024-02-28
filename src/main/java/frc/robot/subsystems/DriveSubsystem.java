@@ -1,19 +1,21 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.motorcontrol.Victor;
+import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
   // create motor controller objects
-  private WPI_VictorSPX leftPrimary = new WPI_VictorSPX(Constants.ID_LEFT_PRIMARY);
-  private WPI_VictorSPX leftSecondary = new WPI_VictorSPX(Constants.ID_LEFT_SECONDARY);
-  private WPI_VictorSPX rightPrimary = new WPI_VictorSPX(Constants.ID_RIGHT_PRIMARY);
-  private WPI_VictorSPX rightSecondary = new WPI_VictorSPX(Constants.ID_RIGHT_SECONDARY);
+  private VictorSP leftPrimary = new VictorSP(Constants.ID_LEFT_PRIMARY);
+  private VictorSP leftSecondary = new VictorSP(Constants.ID_LEFT_SECONDARY);
+  private VictorSP rightPrimary = new VictorSP(Constants.ID_RIGHT_PRIMARY);
+  private VictorSP rightSecondary = new VictorSP(Constants.ID_RIGHT_SECONDARY);
 
   // create a speed controller group for each side
   private MotorControllerGroup groupLeft = new MotorControllerGroup(leftPrimary, leftSecondary);

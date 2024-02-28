@@ -1,9 +1,9 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.PneumaticsSubsystem;
 
-public class PistonCMD extends CommandBase{
+public class PistonCMD extends Command{
     
   // Constructor of the cmd that creates the ability to fire a piston
     private final PneumaticsSubsystem pneumaticsSubsystem;
