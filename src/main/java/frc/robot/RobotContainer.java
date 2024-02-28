@@ -48,7 +48,7 @@ public class RobotContainer {
     configureButtonBindings();
     // CameraServer.startAutomaticCapture()
     // .setVideoMode(new VideoMode(VideoMode.pixelFormat.kMJPEG, 416, 240, 60));
-    // // This is creating a CMD that will be called and excuted as the robot is
+    // // // This is creating a CMD that will be called and excuted as the robot is
     // enabled we do this by making a defualt command
     // This gets the requirements and the cmd construtor from eariler This gets the
     // left stick so it controls the left motors This gets the right stick that
