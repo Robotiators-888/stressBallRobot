@@ -23,8 +23,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public DriveSubsystem() {
     // set one motor on each side inverted so we dont destroy the gearbox
-    leftPrimary.setInverted(true);
-    leftPrimary.setInverted(true);
+    
     leftSecondary.follow(leftPrimary);
     rightSecondary.follow(rightPrimary);
     // leftSecondary.setInverted(true);

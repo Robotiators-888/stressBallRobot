@@ -53,8 +53,8 @@ public class RobotContainer {
     // This gets the requirements and the cmd construtor from eariler This gets the
     // left stick so it controls the left motors This gets the right stick that
     // controls the right motors this is the speed
-    driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem, () -> joystick.getRawAxis(Constants.RIGHT_AXIS),
-        () -> joystick.getRawAxis(Constants.LEFT_AXIS), () -> Constants.speed));
+    driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem, () -> -joystick.getRawAxis(Constants.RIGHT_AXIS),
+        () -> -joystick.getRawAxis(Constants.LEFT_AXIS), () -> Constants.speed));
     // shooterSubsystem.setDefaultCommand(new FlywheelCMD(shooterSubsystem, () ->
     // joystick.getRawAxis((Constants.RIGHT_TRIGGER))-0.5));
   }
