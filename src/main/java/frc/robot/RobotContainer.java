@@ -31,9 +31,9 @@ import frc.robot.commands.PistonCMD;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-  private final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+   public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
+   public final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+   public final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
 
   // Creates joystick and joystick objects
   public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
@@ -75,8 +75,7 @@ public class RobotContainer {
 
     // Creates B button to fire the piston when pressed
     //bButton.toggleOnTrue();
-    bButton.onTrue(new PistonCMD(pneumaticsSubsystem));
-    
+    bButton.onTrue(new PistonCMD(pneumaticsSubsystem)).onFalse(new PistonCMD(pneumaticsSubsystem));
   }
 
   public Command getAutonomousCommand() {
