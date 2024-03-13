@@ -23,7 +23,16 @@ public class SillyAutoCMD extends SequentialCommandGroup {
     addCommands(
       new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(5),
       RobotContainer.shoot(),
-      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(5)
+      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(1),
+      RobotContainer.shoot(),
+      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(1),
+      RobotContainer.shoot(),
+      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(1),
+      RobotContainer.shoot(),
+      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(1),
+      RobotContainer.shoot(),
+      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(1),
+      RobotContainer.shoot()
     );
   }
 }

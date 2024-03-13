@@ -9,6 +9,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.VideoMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -23,6 +24,7 @@ import frc.robot.commands.ElevationDownCMD;
 import frc.robot.commands.ElevationUpCMD;
 import frc.robot.commands.FlywheelCMD;
 import frc.robot.commands.PistonCMD;
+import frc.robot.commands.ShootCMD;
 import frc.robot.commands.SillyAutoCMD;
 
 /**
@@ -44,6 +46,7 @@ public class RobotContainer {
   public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
   public final JoystickButton aButton = new JoystickButton(joystick, 1);
   public final JoystickButton bButton = new JoystickButton(joystick, 2);
+  //public final JoystickButton yButton = new
   public final JoystickButton rBumper = new JoystickButton(joystick, 6);
   public final JoystickButton lBumper = new JoystickButton(joystick, 5);
 
@@ -58,8 +61,8 @@ public class RobotContainer {
     // This gets the requirements and the cmd construtor from eariler This gets the
     // left stick so it controls the left motors This gets the right stick that
     // controls the right motors this is the speed
-    driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem, () -> -joystick.getRawAxis(Constants.RIGHT_AXIS),
-        () -> -joystick.getRawAxis(Constants.LEFT_AXIS), () -> Constants.speed));
+    driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem, () -> Constants.speed*joystick.getRawAxis(Constants.RIGHT_AXIS),
+        () -> Constants.speed*joystick.getRawAxis(Constants.LEFT_AXIS), () -> Constants.speed));
     // shooterSubsystem.setDefaultCommand(new FlywheelCMD(shooterSubsystem, () ->
     // joystick.getRawAxis((Constants.RIGHT_TRIGGER))-0.5));
   }
@@ -71,7 +74,7 @@ public class RobotContainer {
     // joystick.getRawButton(Constants.A_BUTTON)));
 
     rightTrigger.whileTrue(new FlywheelCMD(shooterSubsystem));
-    aButton.onTrue(shoot());
+    aButton.onTrue(new ShootCMD());
 
     // Creates the Left bumper to lift elevation up
     lBumper.whileTrue((new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
@@ -82,7 +85,10 @@ public class RobotContainer {
     // Creates B button to fire the piston when pressed
     //bButton.toggleOnTrue();
     bButton.onTrue(new PistonCMD(pneumaticsSubsystem)).onFalse(new PistonCMD(pneumaticsSubsystem));
+
+   // yButton.onTrue(getAutonomousCommand());
   }
+
 
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
@@ -91,11 +97,7 @@ public class RobotContainer {
 
   public static Command shoot(){
     return new SequentialCommandGroup(
-      new RunCommand(()-> shooterSubsystem.flywheelSpeed()).withTimeout(0.5),
-      new PistonCMD(pneumaticsSubsystem),
-      new WaitCommand(0.1),
-      new PistonCMD(pneumaticsSubsystem),
-      new InstantCommand(()-> shooterSubsystem.flywheelEnd())
+     
     );
   }
 }
