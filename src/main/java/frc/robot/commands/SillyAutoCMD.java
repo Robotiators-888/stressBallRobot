@@ -21,14 +21,9 @@ public class SillyAutoCMD extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new RunCommand(()->DriveSubsystem.setMotors(-.5,.5, .5), drive)
-
-
-
-
-
-
-
+      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(5),
+      RobotContainer.shoot(),
+      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(5)
     );
   }
 }

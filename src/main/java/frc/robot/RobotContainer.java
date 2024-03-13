@@ -9,6 +9,10 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.VideoMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.tankDriveCMD;
@@ -19,6 +23,7 @@ import frc.robot.commands.ElevationDownCMD;
 import frc.robot.commands.ElevationUpCMD;
 import frc.robot.commands.FlywheelCMD;
 import frc.robot.commands.PistonCMD;
+import frc.robot.commands.SillyAutoCMD;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -32,8 +37,8 @@ import frc.robot.commands.PistonCMD;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
    public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
-   public final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-   public final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+   public final static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+   public final static PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
 
   // Creates joystick and joystick objects
   public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
@@ -66,6 +71,7 @@ public class RobotContainer {
     // joystick.getRawButton(Constants.A_BUTTON)));
 
     rightTrigger.whileTrue(new FlywheelCMD(shooterSubsystem));
+    aButton.onTrue(shoot());
 
     // Creates the Left bumper to lift elevation up
     lBumper.whileTrue((new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
@@ -80,6 +86,16 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return new SillyAutoCMD();
+  }
+
+  public static Command shoot(){
+    return new SequentialCommandGroup(
+      new RunCommand(()-> shooterSubsystem.flywheelSpeed()).withTimeout(0.5),
+      new PistonCMD(pneumaticsSubsystem),
+      new WaitCommand(0.1),
+      new PistonCMD(pneumaticsSubsystem),
+      new InstantCommand(()-> shooterSubsystem.flywheelEnd())
+    );
   }
 }
