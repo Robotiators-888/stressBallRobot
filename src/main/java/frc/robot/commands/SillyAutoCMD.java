@@ -21,18 +21,18 @@ public class SillyAutoCMD extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(5),
-      RobotContainer.shoot(),
-      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(1),
-      RobotContainer.shoot(),
-      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(1),
-      RobotContainer.shoot(),
-      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(1),
-      RobotContainer.shoot(),
-      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(1),
-      RobotContainer.shoot(),
-      new RunCommand(()->drive.setMotors(-.5,.5, .5), drive).withTimeout(1),
-      RobotContainer.shoot()
+      new RunCommand(()->drive.setMotors(1,-1,1), drive).withTimeout(5),
+      new ShootCMD(),
+      new RunCommand(()->drive.setMotors(1,-1,1), drive).withTimeout(1),
+      new ShootCMD(),
+      new RunCommand(()->drive.setMotors(1,-1,1), drive).withTimeout(1),
+      new ShootCMD(),
+      new RunCommand(()->drive.setMotors(1,-1,1), drive).withTimeout(1),
+      new ShootCMD(),
+      new RunCommand(()->drive.setMotors(1,-1,1), drive).withTimeout(1),
+      new ShootCMD(),
+      new RunCommand(()->drive.setMotors(1,-1,1), drive).withTimeout(1),
+      new ShootCMD()
     );
   }
 }
