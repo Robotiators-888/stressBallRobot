@@ -41,6 +41,6 @@ public class DriveSubsystem extends SubsystemBase {
    * @param Speed      set a precentage of max speed the robot can use
    */
   public void setMotors(double leftSpeed, double rightSpeed, double Speed) {
-    driveTrain.arcadeDrive(leftSpeed, rightSpeed);
+    driveTrain.arcadeDrive(Speed*leftSpeed,Speed*rightSpeed);
   }
 }

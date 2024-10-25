@@ -7,15 +7,18 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.FlywheelSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
+import frc.robot.subsystems.FlywheelSubsystem;
 import frc.robot.commands.ElevationDownCMD;
 import frc.robot.commands.ElevationUpCMD;
-import frc.robot.commands.FlywheelCMD;
 import frc.robot.commands.PistonCMD;
 
 /**
@@ -30,8 +33,9 @@ import frc.robot.commands.PistonCMD;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  private final PivotSubsystem PivotSubsystem = new PivotSubsystem();
   private final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+  private final FlywheelSubsystem flywheelSubsystem = new FlywheelSubsystem();
 
   // Creates joystick and joystick objects
   public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
@@ -39,6 +43,7 @@ public class RobotContainer {
   public final JoystickButton bButton = new JoystickButton(joystick, 2);
   public final JoystickButton rBumper = new JoystickButton(joystick, 6);
   public final JoystickButton lBumper = new JoystickButton(joystick, 5);
+  public final JoystickButton yButton = new JoystickButton(joystick, 4);
 
   Trigger rightTrigger = new Trigger(() -> (joystick.getRawAxis(3) > 0.5));
 
@@ -56,27 +61,31 @@ public class RobotContainer {
                         joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
                 driveSubsystem));
 
-    // shooterSubsystem.setDefaultCommand(new FlywheelCMD(shooterSubsystem, () ->
+    // flywheelSubsystem.setDefaultCommand(new RunCommand(
+    //             ()->flywheelSubsystem.flywheelEnd()));
+    // PivotSubsystem.setDefaultCommand(new FlywheelCMD(PivotSubsystem, () ->
     // joystick.getRawAxis((Constants.RIGHT_TRIGGER))-0.5));
   }
 
   private void configureButtonBindings() {
 
     // Creates the A button to spin flywheels
-    // aButton.whileHeld(new FlywheelCMD(shooterSubsystem, () ->
+    // aButton.whileHeld(new FlywheelCMD(PivotSubsystem, () ->
     // joystick.getRawButton(Constants.A_BUTTON)));
 
-    rightTrigger.whileTrue(new FlywheelCMD(shooterSubsystem));
+    rightTrigger.onTrue(new InstantCommand(()->FlywheelSubsystem.flywheelSpeed())).onFalse(new InstantCommand(()->FlywheelSubsystem.flywheelEnd()));
 
     // Creates the Left bumper to lift elevation up
-    lBumper.whileTrue((new ElevationUpCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
+    lBumper.whileTrue((new ElevationUpCMD(PivotSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
 
     // Creates the Right bumper to lower elevation down
-    rBumper.whileTrue(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
+    rBumper.whileTrue(new ElevationDownCMD(PivotSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
 
     // Creates B button to fire the piston when pressed
     bButton.onTrue(new PistonCMD(pneumaticsSubsystem));
-    
+
+    yButton.toggleOnTrue(Commands.startEnd(()->FlywheelSubsystem.flywheelSpeed(),()->FlywheelSubsystem.flywheelEnd(), flywheelSubsystem));
+
   }
 
   public Command getAutonomousCommand() {

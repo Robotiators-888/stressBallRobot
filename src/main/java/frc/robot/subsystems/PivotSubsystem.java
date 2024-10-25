@@ -5,30 +5,12 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
-public class ShooterSubsystem extends SubsystemBase {
-   Spark FlywheelLeft = new Spark(Constants.FLYWHEEL_LEFT);
-   Spark FlywheelRight = new Spark(Constants.FLYWHEEL_RIGHT);
+public class PivotSubsystem extends SubsystemBase {
    Spark elevation = new Spark(Constants.ELEVATION);
-   double flywheelSpeed = Constants.FLYWHEEL_SPEED;
    double elevationSpeed = Constants.ELEVATION_SPEED;
-
-   MotorControllerGroup FlywheelGroup = new MotorControllerGroup(FlywheelLeft, FlywheelRight);
 
    public void periodic() {
 
-   }
-
-   //
-
-   public void flywheelSpeed() {
-      FlywheelRight.set(Constants.FLYWHEEL_SPEED * -1);
-      FlywheelLeft.set(Constants.FLYWHEEL_SPEED);
-
-   }
-
-   public void flywheelEnd() {
-      FlywheelLeft.set(0.0);
-      FlywheelRight.set(0.0);
    }
 
    //

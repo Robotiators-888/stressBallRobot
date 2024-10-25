@@ -3,20 +3,20 @@ package frc.robot.commands;
 import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 
 
 
 
 public class ElevationUpCMD extends Command{
-    private final ShooterSubsystem shooterSubsystem;
+    private final PivotSubsystem PivotSubsystem;
     private final Supplier<Integer> ElevationUp;
 
     // Constructor of the cmd that creates the ability to move elevation up
-    public ElevationUpCMD(ShooterSubsystem shooterSubsystem, Supplier<Integer> Elevation){
-        this.shooterSubsystem = shooterSubsystem;
+    public ElevationUpCMD(PivotSubsystem PivotSubsystem, Supplier<Integer> Elevation){
+        this.PivotSubsystem = PivotSubsystem;
         this.ElevationUp = Elevation;
-        addRequirements(shooterSubsystem);
+        addRequirements(PivotSubsystem);
     }
 
 
@@ -27,14 +27,14 @@ public void initialize() {}
 // Called every time the scheduler runs while the command is scheduled.
 @Override
 public void execute() {
-  shooterSubsystem.elevationUp();
+  PivotSubsystem.elevationUp();
 
 }
 
 // Called once the command ends or is interrupted.
 @Override
 public void end(boolean interrupted) {
-   shooterSubsystem.elevationEnd();
+   PivotSubsystem.elevationEnd();
 }
 
 // Returns true when the command should end.
