@@ -57,12 +57,12 @@ public class RobotContainer {
     // left stick so it controls the left motors This gets the right stick that
     // controls the right motors this is the speed
     driveSubsystem.setDefaultCommand(new RunCommand(
-                () -> driveSubsystem.setMotors(joystick.getRawAxis(Constants.RIGHT_AXIS),
-                        joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
-                driveSubsystem));
+        () -> driveSubsystem.setMotors(joystick.getRawAxis(Constants.RIGHT_AXIS),
+            joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
+        driveSubsystem));
 
     // flywheelSubsystem.setDefaultCommand(new RunCommand(
-    //             ()->flywheelSubsystem.flywheelEnd()));
+    // ()->flywheelSubsystem.flywheelEnd()));
     // PivotSubsystem.setDefaultCommand(new FlywheelCMD(PivotSubsystem, () ->
     // joystick.getRawAxis((Constants.RIGHT_TRIGGER))-0.5));
   }
@@ -73,7 +73,8 @@ public class RobotContainer {
     // aButton.whileHeld(new FlywheelCMD(PivotSubsystem, () ->
     // joystick.getRawButton(Constants.A_BUTTON)));
 
-    rightTrigger.onTrue(new InstantCommand(()->FlywheelSubsystem.flywheelSpeed())).onFalse(new InstantCommand(()->FlywheelSubsystem.flywheelEnd()));
+    rightTrigger.onTrue(new InstantCommand(() -> FlywheelSubsystem.flywheelSpeed()))
+        .onFalse(new InstantCommand(() -> FlywheelSubsystem.flywheelEnd()));
 
     // Creates the Left bumper to lift elevation up
     lBumper.whileTrue((new ElevationUpCMD(PivotSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
@@ -84,7 +85,8 @@ public class RobotContainer {
     // Creates B button to fire the piston when pressed
     bButton.onTrue(new PistonCMD(pneumaticsSubsystem));
 
-    yButton.toggleOnTrue(Commands.startEnd(()->FlywheelSubsystem.flywheelSpeed(),()->FlywheelSubsystem.flywheelEnd(), flywheelSubsystem));
+    yButton.toggleOnTrue(Commands.startEnd(() -> FlywheelSubsystem.flywheelSpeed(),
+        () -> FlywheelSubsystem.flywheelEnd(), flywheelSubsystem));
 
   }
 
