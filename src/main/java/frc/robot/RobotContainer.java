@@ -18,8 +18,6 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.FlywheelSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
-import frc.robot.commands.ElevationDownCMD;
-import frc.robot.commands.ElevationUpCMD;
 
 
 /**
@@ -31,7 +29,7 @@ import frc.robot.commands.ElevationUpCMD;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  private final PivotSubsystem PivotSubsystem = new PivotSubsystem();
+  private final PivotSubsystem pivotSubsystem = new PivotSubsystem();
   private final FlywheelSubsystem flywheelSubsystem = new FlywheelSubsystem();
 
   // Creates joystick and joystick objects
@@ -60,7 +58,9 @@ public class RobotContainer {
                 () -> driveSubsystem.setMotors(joystick.getRawAxis(Constants.RIGHT_AXIS),
                     joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
                 driveSubsystem));
-
+    
+    pivotSubsystem
+        .setDefaultCommand(new RunCommand(() -> pivotSubsystem.elevationEnd(), pivotSubsystem));
     // flywheelSubsystem.setDefaultCommand(new RunCommand(
     // ()->flywheelSubsystem.flywheelEnd()));
     // PivotSubsystem.setDefaultCommand(new FlywheelCMD(PivotSubsystem, () ->
@@ -77,12 +77,11 @@ public class RobotContainer {
         .onFalse(new InstantCommand(() -> FlywheelSubsystem.flywheelEnd()));
 
     // Creates the Left bumper to lift elevation up
-    lBumper
-        .whileTrue((new ElevationUpCMD(PivotSubsystem, () -> joystick.getPOV(Constants.DAPD_UP))));
+    lBumper.whileTrue(new RunCommand(()->pivotSubsystem.elevationDown(),pivotSubsystem));
 
     // Creates the Right bumper to lower elevation down
-    rBumper.whileTrue(
-        new ElevationDownCMD(PivotSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
+    rBumper.whileTrue(new RunCommand(()->pivotSubsystem.elevationUp(),pivotSubsystem));
+
 
     // Creates B button to fire the piston when pressed
     bButton
@@ -91,10 +90,14 @@ public class RobotContainer {
 
     yButton.toggleOnTrue(Commands.startEnd(() -> FlywheelSubsystem.flywheelSpeed(),
         () -> FlywheelSubsystem.flywheelEnd(), flywheelSubsystem));
-    aButton.onTrue(new SequentialCommandGroup(new InstantCommand(()->FlywheelSubsystem.decreaseRpm()), new InstantCommand(()->FlywheelSubsystem.updateSpeed())));
-    xButton.onTrue(new SequentialCommandGroup(new InstantCommand(()->FlywheelSubsystem.increaseRpm()), new InstantCommand(()->FlywheelSubsystem.updateSpeed())));
+    aButton.onTrue(
+        new SequentialCommandGroup(new InstantCommand(() -> FlywheelSubsystem.decreaseRpm()),
+            new InstantCommand(() -> FlywheelSubsystem.updateSpeed())));
+    xButton.onTrue(
+        new SequentialCommandGroup(new InstantCommand(() -> FlywheelSubsystem.increaseRpm()),
+            new InstantCommand(() -> FlywheelSubsystem.updateSpeed())));
   }
-  
+
 
   public Command getAutonomousCommand() {
     return null;
