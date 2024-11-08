@@ -34,65 +34,60 @@ public class RobotContainer {
 
   // Creates joystick and joystick objects
   public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
-  public final JoystickButton xButton = new JoystickButton(joystick, 3);
   public final JoystickButton aButton = new JoystickButton(joystick, 1);
   public final JoystickButton bButton = new JoystickButton(joystick, 2);
-  public final JoystickButton rBumper = new JoystickButton(joystick, 6);
-  public final JoystickButton lBumper = new JoystickButton(joystick, 5);
+  public final JoystickButton xButton = new JoystickButton(joystick, 3);
   public final JoystickButton yButton = new JoystickButton(joystick, 4);
+  public final JoystickButton lBumper = new JoystickButton(joystick, 5);
+  public final JoystickButton rBumper = new JoystickButton(joystick, 6);
+  
+
 
   Trigger rightTrigger = new Trigger(() -> (joystick.getRawAxis(3) > 0.5));
 
   public RobotContainer() {
     configureButtonBindings();
-    // CameraServer.startAutomaticCapture()
-    // .setVideoMode(new VideoMode(VideoMode.pixelFormat.kMJPEG, 416, 240, 60));
-    // // // This is creating a CMD that will be called and excuted as the robot is
-    // enabled we do this by making a defualt command
-    // This gets the requirements and the cmd construtor from eariler This gets the
-    // left stick so it controls the left motors This gets the right stick that
-    // controls the right motors this is the speed
+
+    // Make the drive system to default to driving based on joystick inputs.
     driveSubsystem
         .setDefaultCommand(
             new RunCommand(
                 () -> driveSubsystem.setMotors(joystick.getRawAxis(Constants.RIGHT_AXIS),
                     joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
                 driveSubsystem));
-    
+                
+    // Make the pivot subsystem default to stopped.
     pivotSubsystem
         .setDefaultCommand(new RunCommand(() -> pivotSubsystem.elevationEnd(), pivotSubsystem));
-    // flywheelSubsystem.setDefaultCommand(new RunCommand(
-    // ()->flywheelSubsystem.flywheelEnd()));
-    // PivotSubsystem.setDefaultCommand(new FlywheelCMD(PivotSubsystem, () ->
-    // joystick.getRawAxis((Constants.RIGHT_TRIGGER))-0.5));
   }
 
   private void configureButtonBindings() {
 
-    // Creates the A button to spin flywheels
-    // aButton.whileHeld(new FlywheelCMD(PivotSubsystem, () ->
-    // joystick.getRawButton(Constants.A_BUTTON)));
-
+    // While right trigger is pressed run the flywheels.
     rightTrigger.onTrue(new InstantCommand(() -> FlywheelSubsystem.flywheelSpeed()))
         .onFalse(new InstantCommand(() -> FlywheelSubsystem.flywheelEnd()));
 
-    // Creates the Left bumper to lift elevation up
-    lBumper.whileTrue(new RunCommand(()->pivotSubsystem.elevationDown(),pivotSubsystem));
+    // Left bumper runs the elevation down command while held.
+    lBumper.whileTrue(new RunCommand(() -> pivotSubsystem.elevationDown(), pivotSubsystem));
 
-    // Creates the Right bumper to lower elevation down
-    rBumper.whileTrue(new RunCommand(()->pivotSubsystem.elevationUp(),pivotSubsystem));
+    // Right bumper runs the elevation up command while held.
+    rBumper.whileTrue(new RunCommand(() -> pivotSubsystem.elevationUp(), pivotSubsystem));
 
-
-    // Creates B button to fire the piston when pressed
+    // On B button press extend the piston, wait .1 seconds, then retract the piston.
     bButton
         .onTrue(new SequentialCommandGroup(new InstantCommand(() -> PneumaticsSubsystem.pistonGo()),
             new WaitCommand(.1), new InstantCommand(() -> PneumaticsSubsystem.PistonReverse())));
 
+    // Create a toggle for the Y button to start and stop the flywheels.
     yButton.toggleOnTrue(Commands.startEnd(() -> FlywheelSubsystem.flywheelSpeed(),
         () -> FlywheelSubsystem.flywheelEnd(), flywheelSubsystem));
+
+    // Decrease the RPM Setpoint for the flywheels if it is not out of range.
     aButton.onTrue(
         new SequentialCommandGroup(new InstantCommand(() -> FlywheelSubsystem.decreaseRpm()),
             new InstantCommand(() -> FlywheelSubsystem.updateSpeed())));
+        
+    // Increase the RPM Setpoint for the flywheels if it is not out of range.
     xButton.onTrue(
         new SequentialCommandGroup(new InstantCommand(() -> FlywheelSubsystem.increaseRpm()),
             new InstantCommand(() -> FlywheelSubsystem.updateSpeed())));
