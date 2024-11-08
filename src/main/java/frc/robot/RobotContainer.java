@@ -40,8 +40,7 @@ public class RobotContainer {
   public final JoystickButton yButton = new JoystickButton(joystick, 4);
   public final JoystickButton lBumper = new JoystickButton(joystick, 5);
   public final JoystickButton rBumper = new JoystickButton(joystick, 6);
-  
-
+  public final JoystickButton startButton = new JoystickButton(joystick, 7);
 
   Trigger rightTrigger = new Trigger(() -> (joystick.getRawAxis(3) > 0.5));
 
@@ -55,7 +54,7 @@ public class RobotContainer {
                 () -> driveSubsystem.setMotors(joystick.getRawAxis(Constants.RIGHT_AXIS),
                     joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
                 driveSubsystem));
-                
+
     // Make the pivot subsystem default to stopped.
     pivotSubsystem
         .setDefaultCommand(new RunCommand(() -> pivotSubsystem.elevationEnd(), pivotSubsystem));
@@ -91,6 +90,8 @@ public class RobotContainer {
     xButton.onTrue(
         new SequentialCommandGroup(new InstantCommand(() -> FlywheelSubsystem.increaseRpm()),
             new InstantCommand(() -> FlywheelSubsystem.updateSpeed())));
+
+    startButton.onTrue(new InstantCommand(()->FlywheelSubsystem.ToggleChildSafe()));
   }
 
 
