@@ -51,8 +51,14 @@ public final class Constants {
     public static final int FLYWHEEL_RIGHT = 1;
     public static final int ELEVATION = 2;
 
-    public static final double FLYWHEEL_SPEED = .5;
+    public static final double MAX_CHILD_SAFE_SPEED = .6;
+    public static final double MAX_SPEED = .9;
+    public static final double MIN_SPEED = .2;
+    public static final double SPEED_STEP = .1;
+    public static final double INITIAL_SPEED = .5;
     public static final double ELEVATION_SPEED = 0.5;
+
+
     public static final int RIGHT_TRIGGER = 3;
 
 }

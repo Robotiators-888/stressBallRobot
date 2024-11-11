@@ -14,12 +14,12 @@ public class PivotSubsystem extends SubsystemBase {
 
    //
    public void elevationUp() {
-      elevationSpeed = Constants.FLYWHEEL_SPEED;
+      elevationSpeed = Constants.ELEVATION_SPEED;
       elevation.set(elevationSpeed);
    }
 
    public void elevationDown() {
-      elevationSpeed = Constants.FLYWHEEL_SPEED * -1;
+      elevationSpeed = Constants.ELEVATION_SPEED * -1;
       elevation.set(elevationSpeed);
    }
 

@@ -83,12 +83,12 @@ public class RobotContainer {
 
     // Decrease the RPM Setpoint for the flywheels if it is not out of range.
     aButton.onTrue(
-        new SequentialCommandGroup(new InstantCommand(() -> FlywheelSubsystem.decreaseRpm()),
+        new SequentialCommandGroup(new InstantCommand(() -> FlywheelSubsystem.decreaseSpeed()),
             new InstantCommand(() -> FlywheelSubsystem.updateSpeed())));
         
     // Increase the RPM Setpoint for the flywheels if it is not out of range.
     xButton.onTrue(
-        new SequentialCommandGroup(new InstantCommand(() -> FlywheelSubsystem.increaseRpm()),
+        new SequentialCommandGroup(new InstantCommand(() -> FlywheelSubsystem.increaseSpeed()),
             new InstantCommand(() -> FlywheelSubsystem.updateSpeed())));
 
     startButton.onTrue(new InstantCommand(()->FlywheelSubsystem.ToggleChildSafe()));

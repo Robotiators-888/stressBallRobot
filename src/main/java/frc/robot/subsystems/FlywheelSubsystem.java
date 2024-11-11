@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class FlywheelSubsystem extends SubsystemBase {
    static Spark FlywheelLeft = new Spark(Constants.FLYWHEEL_LEFT);
    static Spark FlywheelRight = new Spark(Constants.FLYWHEEL_RIGHT);
-   public static double FlywheelSpeed = .5;
+   public static double FlywheelSpeed = Constants.INITIAL_SPEED;
    public static boolean ChildSafe = true;
 
 
@@ -17,28 +17,29 @@ public class FlywheelSubsystem extends SubsystemBase {
       SmartDashboard.putBoolean("ChildSafe", ChildSafe);
    }
 
-   public static void decreaseRpm() {
+   public static void decreaseSpeed() {
       if (FlywheelSpeed >= .3) {
-         FlywheelSpeed = FlywheelSpeed - .1;
+         FlywheelSpeed = FlywheelSpeed - Constants.SPEED_STEP;
       }
    }
 
-   public static void increaseRpm() {
+   public static void increaseSpeed() {
       if (ChildSafe) {
-         if (FlywheelSpeed < .6) {
-            FlywheelSpeed = FlywheelSpeed + .1;
+         if (FlywheelSpeed < Constants.MAX_CHILD_SAFE_SPEED) {
+            FlywheelSpeed = FlywheelSpeed + Constants.SPEED_STEP;
          }
       } else {
-         if (FlywheelSpeed < .9) {
-            FlywheelSpeed = FlywheelSpeed + .1;
+         if (FlywheelSpeed < Constants.MAX_SPEED) {
+            FlywheelSpeed = FlywheelSpeed + Constants.SPEED_STEP;
          }
       }
    }
 
    public static void ToggleChildSafe() {
       ChildSafe = !ChildSafe;
-      if (ChildSafe && FlywheelSpeed > .6) {
-         FlywheelSpeed = .6;
+      if (ChildSafe && FlywheelSpeed > Constants.MAX_CHILD_SAFE_SPEED) {
+         FlywheelSpeed = Constants.MAX_CHILD_SAFE_SPEED;
+         updateSpeed();
       }
    }
 
