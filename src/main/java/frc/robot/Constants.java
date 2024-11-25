@@ -6,15 +6,12 @@
 package frc.robot;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide
- * numerical or boolean
- * constants. This class should not be used for any other purpose. All constants
- * should be declared
+ * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
+ * constants. This class should not be used for any other purpose. All constants should be declared
  * globally (i.e. public static). Do not put anything functional in this class.
  *
  * <p>
- * It is advised to statically import this class (or one of its inner classes)
- * wherever the
+ * It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
@@ -26,8 +23,8 @@ public final class Constants {
     public static final int ID_RIGHT_SECONDARY = 21;
 
     // Speed for the motors
-    public static final Double DRIVE_SPEED = 0.6;
-
+    public static final Double CHILD_DRIVE_SPEED = 0.5;
+    public static final int FULL_DRIVE_SPEED = 1;
     // Joystick
     // this tells which port of the driver station the joystick is in
     public static final int JOYSTICK_PORT = 0;
@@ -49,12 +46,14 @@ public final class Constants {
     // Shooter
     public static final int FLYWHEEL_LEFT = 0;
     public static final int FLYWHEEL_RIGHT = 1;
-    public static final int ELEVATION = 2;
-
-    public static final double MAX_CHILD_SAFE_SPEED = .6;
+    public static final double MAX_CHILD_SAFE_FLYWHEEL_SPEED = .5;
     public static final double MAX_SPEED = .9;
     public static final double MIN_SPEED = .2;
     public static final double SPEED_STEP = .1;
+
+    public static final int ELEVATION = 2;
+
+ 
     public static final double INITIAL_SPEED = .5;
     public static final double ELEVATION_SPEED = 0.5;
 

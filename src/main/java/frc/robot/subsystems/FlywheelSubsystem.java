@@ -25,7 +25,7 @@ public class FlywheelSubsystem extends SubsystemBase {
 
    public static void increaseSpeed() {
       if (ChildSafe) {
-         if (FlywheelSpeed < Constants.MAX_CHILD_SAFE_SPEED) {
+         if (FlywheelSpeed < Constants.MAX_CHILD_SAFE_FLYWHEEL_SPEED) {
             FlywheelSpeed = FlywheelSpeed + Constants.SPEED_STEP;
          }
       } else {
@@ -37,8 +37,8 @@ public class FlywheelSubsystem extends SubsystemBase {
 
    public static void ToggleChildSafe() {
       ChildSafe = !ChildSafe;
-      if (ChildSafe && FlywheelSpeed > Constants.MAX_CHILD_SAFE_SPEED) {
-         FlywheelSpeed = Constants.MAX_CHILD_SAFE_SPEED;
+      if (ChildSafe && FlywheelSpeed > Constants.MAX_CHILD_SAFE_FLYWHEEL_SPEED) {
+         FlywheelSpeed = Constants.MAX_CHILD_SAFE_FLYWHEEL_SPEED;
          updateSpeed();
       }
    }
@@ -58,6 +58,10 @@ public class FlywheelSubsystem extends SubsystemBase {
    public static void flywheelEnd() {
       FlywheelLeft.set(0.0);
       FlywheelRight.set(0.0);
+   }
+
+   public static void setFlyWheelSpeed(Double speed){
+      FlywheelSpeed = speed;
    }
 
 
