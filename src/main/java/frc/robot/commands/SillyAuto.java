@@ -18,21 +18,17 @@ public class SillyAuto extends SequentialCommandGroup {
    * 
    * @return
    */
-  public void SillyAutoCMD() {
+  public SillyAuto() {
 
     DriveSubsystem drive = RobotContainer.driveSubsystem;
 
     addCommands(new InstantCommand(() -> FlywheelSubsystem.setFlyWheelSpeed(0.6)),
-
+        new InstantCommand(() -> DriveSubsystem.SetChildSafeOff()),
         new ParallelCommandGroup(new RunCommand(() -> drive.setMotors(1, -1), drive),
             new RunCommand(() -> FlywheelSubsystem.flywheelSpeed()),
             new RepeatCommand(new SequentialCommandGroup(
                 new InstantCommand(() -> PneumaticsSubsystem.pistonGo()), new WaitCommand(.1),
                 new InstantCommand(() -> PneumaticsSubsystem.PistonReverse()),
-                new WaitCommand(.3))))
-
-
-
-    );
+                new WaitCommand(.3)))));
   }
 }

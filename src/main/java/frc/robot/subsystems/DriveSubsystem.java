@@ -16,7 +16,7 @@ public class DriveSubsystem extends SubsystemBase {
   private WPI_VictorSPX rightSecondary = new WPI_VictorSPX(Constants.ID_RIGHT_SECONDARY);
   private DifferentialDrive driveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
   private static double DriveSpeed = Constants.CHILD_DRIVE_SPEED;
-  private static boolean ChildDriveSpeed = true;
+  public static boolean ChildDriveSpeed = true;
   // create a speed controller group for each side
 
   // create a drive train group with the speed controller groups
@@ -52,5 +52,10 @@ public class DriveSubsystem extends SubsystemBase {
       DriveSpeed = Constants.CHILD_DRIVE_SPEED;
     }
     ChildDriveSpeed = !ChildDriveSpeed;
+  }
+
+  public static void SetChildSafeOff(){
+    ChildDriveSpeed = false;
+    DriveSpeed = Constants.FULL_DRIVE_SPEED;
   }
 }

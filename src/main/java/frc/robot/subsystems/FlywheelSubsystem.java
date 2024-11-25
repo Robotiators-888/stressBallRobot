@@ -45,8 +45,7 @@ public class FlywheelSubsystem extends SubsystemBase {
 
    public static void updateSpeed() {
       if (FlywheelLeft.get() > 0) {
-         FlywheelRight.set(-FlywheelSpeed);
-         FlywheelLeft.set(FlywheelSpeed);
+         flywheelSpeed();
       }
    }
 
