@@ -10,48 +10,54 @@ package frc.robot;
  * constants. This class should not be used for any other purpose. All constants should be declared
  * globally (i.e. public static). Do not put anything functional in this class.
  *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
+ * <p>
+ * It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
 
-        //Drive Motors
-        public static final int ID_LEFT_PRIMARY = 22;  
-        public static final int ID_LEFT_SECONDARY = 23;  
-        public static final int ID_RIGHT_PRIMARY = 20;  
-        public static final int ID_RIGHT_SECONDARY = 21;  
+    // Drive Motors
+    public static final int ID_LEFT_PRIMARY = 22;
+    public static final int ID_LEFT_SECONDARY = 23;
+    public static final int ID_RIGHT_PRIMARY = 20;
+    public static final int ID_RIGHT_SECONDARY = 21;
 
-        //Speed for the motors
-        public static final Double speed = 0.6;
-        
+    // Speed for the motors
+    public static final Double CHILD_DRIVE_SPEED = 0.5;
+    public static final int FULL_DRIVE_SPEED = 1;
+    // Joystick
+    // this tells which port of the driver station the joystick is in
+    public static final int JOYSTICK_PORT = 0;
 
-        //Joystick
-        //this tells which port of the driver station the joystick is in
-        public static final int JOYSTICK_PORT = 0;  
-        
-        //This tells us which part of the joystick will be used
-        // 1 = to the left stick's y axis
-        public static final int LEFT_AXIS = 1; 
-        // 4 = to the right stick's y axis 
-        public static final int RIGHT_AXIS = 4;  
-        // 1 = the a button on joystick
-        public static final int A_BUTTON = 1;
-        // 2 = the b button on joystick
-        public static final int B_BUTTON = 2;
-        // 5 = the up on the d pad
-        public static final int DAPD_UP = 5;
-        // 6 = down on the d pad
-        public static final int DAPD_DOWN = 6;
-    
+    // This tells us which part of the joystick will be used
+    // 1 = to the left stick's y axis
+    public static final int LEFT_AXIS = 1;
+    // 4 = to the right stick's y axis
+    public static final int RIGHT_AXIS = 4;
+    // 1 = the a button on joystick
+    public static final int A_BUTTON = 1;
+    // 2 = the b button on joystick
+    public static final int B_BUTTON = 2;
+    // 5 = the up on the d pad
+    public static final int DAPD_UP = 5;
+    // 6 = down on the d pad
+    public static final int DAPD_DOWN = 6;
 
-        //Shooter
-        public static final int FLYWHEEL_LEFT = 0;
-        public static final int FLYWHEEL_RIGHT = 1;
-        public static final int ELEVATION = 2;
-        
-        public static final double FLYWHEEL_SPEED = .5;
-        public static final double ELEVATION_SPEED = 0.5;
-		public static final int RIGHT_TRIGGER = 3;
-    
+    // Shooter
+    public static final int FLYWHEEL_LEFT = 0;
+    public static final int FLYWHEEL_RIGHT = 1;
+    public static final double MAX_CHILD_SAFE_FLYWHEEL_SPEED = .5;
+    public static final double MAX_SPEED = .9;
+    public static final double MIN_SPEED = .2;
+    public static final double SPEED_STEP = .1;
+
+    public static final int ELEVATION = 2;
+
+ 
+    public static final double INITIAL_SPEED = .5;
+    public static final double ELEVATION_SPEED = 0.5;
+
+
+    public static final int RIGHT_TRIGGER = 3;
+
 }
-
